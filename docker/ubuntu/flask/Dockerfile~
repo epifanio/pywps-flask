@@ -49,7 +49,7 @@ RUN git clone $FLASK_GIT
 WORKDIR /pywps-flask
 RUN pip3 install git+https://github.com/geopython/pywps
 RUN pip3 install -r requirements.txt
-
+RUN pip3 install git+https://github.com/epifanio/pywps-flask
 # RUN python3 setup.py build
 
 RUN python3 setup.py install
@@ -57,6 +57,9 @@ RUN python3 setup.py install
 RUN mkdir /etc/service/pywps4
 COPY pywps4_service.sh /etc/service/pywps4/run
 RUN chmod +x /etc/service/pywps4/run
+
+ENTRYPOINT ["python3"]
+CMD ["demo.py -a -p 5000"]
 
 EXPOSE 5000
 
