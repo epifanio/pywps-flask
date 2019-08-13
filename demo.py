@@ -128,7 +128,7 @@ if __name__ == "__main__":
     parser.add_argument('-a','--all-addresses',
                         action='store_true', help="run flask using IPv4 0.0.0.0 (all network interfaces),"  +  
                             "otherwise bind to 127.0.0.1 (localhost).  This maybe necessary in systems that only run Flask") 
-    parser.add_argument('-p','--docker-port', type=int, default="0", help="specify docker port")                       
+    parser.add_argument('-p','--docker-port', nargs='?', const=0, type=int, help="specify docker port")                       
     args = parser.parse_args()
     if args.docker_port:
         app.config['docker_port'] = args.docker_port
