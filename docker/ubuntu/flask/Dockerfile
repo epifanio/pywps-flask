@@ -48,7 +48,9 @@ RUN git clone $FLASK_GIT #-b $FLASK_BRANCH --single-branch
 WORKDIR /pywps-flask
 RUN pip3 install git+https://github.com/geopython/pywps
 RUN pip3 install -r requirements.txt
-RUN python3 setup.py build
+
+# RUN python3 setup.py build
+RUN echo "chi sei"
 RUN python3 setup.py install
 
 RUN mkdir /etc/service/pywps4

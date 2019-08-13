@@ -1,0 +1,28 @@
+Metadata-Version: 1.2
+Name: pywps-flask
+Version: 4.2.1
+Summary: PyWPS is an implementation of the Web Processing Service standard from the
+Open Geospatial Consortium. PyWPS is written in Python.
+
+PyWPS-Flask is an example service using the PyWPS server, distributed along 
+with a basic set of sample processes and sample configuration file. It's 
+usually used for testing and development purposes.
+
+Home-page: http://pywps.org
+Author: PyWPS PSC
+Author-email: luis.a.de.sousa@gmail.com
+Maintainer: Luis de Sousa
+Maintainer-email: luis.de.sousa@protonmail.ch
+License: MIT
+Download-URL: https://github.com/lazaa32/pywps-flask
+Description: UNKNOWN
+Keywords: PyWPS WPS OGC processing
+Platform: all
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Environment :: Web Environment
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: Science/Research
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Topic :: Scientific/Engineering :: GIS
