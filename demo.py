@@ -68,9 +68,10 @@ service = Service(processes, ['pywps.cfg'])
 def hello():
     server_url = pywps.configuration.get_config_value("server", "url")
     request_url = flask.request.url
-    print(app.config['docker_port'])
-    if app.config['docker_port'] != 0:
-        print("here some actions")
+    print(app.config.keys())
+    #print(app.config['docker_port'])
+    #if app.config['docker_port'] != 0:
+    #    print("here some actions")
     print(request_url)
     return flask.render_template('home.html', request_url=request_url,
                                  server_url=server_url,
