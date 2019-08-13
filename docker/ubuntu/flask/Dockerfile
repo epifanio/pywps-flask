@@ -43,7 +43,8 @@ RUN apt-get update -y && install_clean \
 
     
 WORKDIR /
-RUN git clone $FLASK_GIT #-b $FLASK_BRANCH --single-branch 
+
+RUN git clone $FLASK_GIT
  
 WORKDIR /pywps-flask
 RUN pip3 install git+https://github.com/geopython/pywps
