@@ -71,7 +71,7 @@ def hello():
     print(app.config.keys())
     print(app.config['docker_port'])
     if app.config['docker_port'] != 0:
-    #    print("here some actions")
+        print("here some actions")
     print(request_url)
     request_url = request_url.replace('localhost', 'localhost:'+app.config['docker_port'])
     return flask.render_template('home.html', request_url=request_url,
