@@ -13,6 +13,7 @@ logs/*
 build
 dist
 pywps_demo.egg-info/
+pywps_flask.egg-info/
 
 # docs build artifacts
 _build/
