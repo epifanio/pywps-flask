@@ -1,1 +1,0 @@
-git+https://github.com/geopython/pywps.git@pywps-4.2.1#egg=pywps-4.2.1
