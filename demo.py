@@ -69,6 +69,8 @@ def hello():
     server_url = pywps.configuration.get_config_value("server", "url")
     request_url = flask.request.url
     print(app.config['docker_port'])
+    if app.config['docker_port'] != 0:
+        print("here some actions")
     print(request_url)
     return flask.render_template('home.html', request_url=request_url,
                                  server_url=server_url,
@@ -107,12 +109,7 @@ def staticfile(filename):
     else:
         flask.abort(404)
 
-def create_app(foo):
-    app = flask.Flask(__name__)
-    app.config['foo'] = foo
-    print('Passed item: ', app.config['foo'])
-    return app
-    
+
 if __name__ == "__main__":
     import argparse
     test='tttt'
@@ -131,7 +128,7 @@ if __name__ == "__main__":
     parser.add_argument('-a','--all-addresses',
                         action='store_true', help="run flask using IPv4 0.0.0.0 (all network interfaces),"  +  
                             "otherwise bind to 127.0.0.1 (localhost).  This maybe necessary in systems that only run Flask") 
-    parser.add_argument('-p','--docker-port', help="specify docker port")                       
+    parser.add_argument('-p','--docker-port', type=int, default="0", help="specify docker port")                       
     args = parser.parse_args()
     if args.docker_port:
         app.config['docker_port'] = args.docker_port
