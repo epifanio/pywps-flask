@@ -67,8 +67,9 @@ service = Service(processes, ['pywps.cfg'])
 @app.route("/")
 def hello():
     server_url = pywps.configuration.get_config_value("server", "url")
-    print(server_url)
     request_url = flask.request.url
+    print(app.config['docker_port'])
+    print(request_url)
     return flask.render_template('home.html', request_url=request_url,
                                  server_url=server_url,
                                  process_descriptor=process_descriptor)
@@ -106,9 +107,17 @@ def staticfile(filename):
     else:
         flask.abort(404)
 
+def create_app(foo):
+    app = flask.Flask(__name__)
+    app.config['foo'] = foo
+    print('Passed item: ', app.config['foo'])
+    return app
+    
 if __name__ == "__main__":
     import argparse
-
+    test='tttt'
+    #Sapp = create_app(test)
+    
     parser = argparse.ArgumentParser(
         description="""Script for starting an example PyWPS
                        instance with sample processes""",
@@ -122,13 +131,14 @@ if __name__ == "__main__":
     parser.add_argument('-a','--all-addresses',
                         action='store_true', help="run flask using IPv4 0.0.0.0 (all network interfaces),"  +  
                             "otherwise bind to 127.0.0.1 (localhost).  This maybe necessary in systems that only run Flask") 
+    parser.add_argument('-p','--docker-port', help="specify docker port")                       
     args = parser.parse_args()
-    
+    if args.docker_port:
+        app.config['docker_port'] = args.docker_port
     if args.all_addresses:
         bind_host='0.0.0.0'
     else:
         bind_host='127.0.0.1'
-
     if args.daemon:
         pid = None
         try:
@@ -138,8 +148,8 @@ if __name__ == "__main__":
 
         if (pid == 0):
             os.setsid()
-            app.run(threaded=True,host=bind_host)
+            app.run(threaded=True, host=bind_host)
         else:
             os._exit(0)
     else:
-        app.run(threaded=True,host=bind_host)
+        app.run(threaded=True, host=bind_host)
