@@ -36,7 +36,7 @@ from processes.buffer import Buffer
 from processes.area import Area
 from processes.bboxinout import Box
 from processes.jsonprocess import TestJson
-from processes.transformation import SayHello2
+from processes.sayHello2 import SayHello2
 
 app = flask.Flask(__name__)
 
