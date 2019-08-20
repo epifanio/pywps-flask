@@ -50,7 +50,7 @@ processes = [
     Area(),
     Box(),
     TestJson(),
-    Transformation()
+    SayHello2()
 ]
 
 # For the process list on the home page
