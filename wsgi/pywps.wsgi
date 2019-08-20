@@ -49,7 +49,8 @@ processes = [
     UltimateQuestion(),
     Sleep(),
     Buffer(),
-    Area()
+    Area(),
+    Transformation()
 ]
 
 application = Service(processes, ['pywps.cfg'])
