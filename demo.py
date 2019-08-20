@@ -49,7 +49,8 @@ processes = [
     Buffer(),
     Area(),
     Box(),
-    TestJson()
+    TestJson(),
+    Transformation()
 ]
 
 # For the process list on the home page
