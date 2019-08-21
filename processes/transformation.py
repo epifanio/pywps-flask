@@ -7,7 +7,7 @@ from pywps.wpsserver import temp_dir
 
 __author__ = 'Massimo'
 
-class SayHello2(Process):
+class Transformation(Process):
     def __init__(self):
         inputs = [LiteralInput('inputfile',
                                'Input File (http://thredds.met.no/thredds/dodsC/arome25/arome_metcoop_default2_5km_latest.nc)',
@@ -108,7 +108,7 @@ class SayHello2(Process):
                                  data_type='string')
                    ]
 
-        super(SayHello2, self).__init__(
+        super(Transformation, self).__init__(
             self._handler,
             identifier='transformation',
             title='Transformation',
@@ -141,17 +141,19 @@ class SayHello2(Process):
         base = ['interpolateXAxisMin', 
                 'interpolateXAxisMax', 
                 'interpolateYAxisMin', 
-                'interpolateYAxisMax']
+                'interpolateYAxisMax',
+                'interpolateHorSteps']
         if all(x in list(request.inputs.keys()) for x in base):
-            xMin = float(request.inputs['interpolateXAxisMin'][0].data)
-            xMax = float(request.inputs['interpolateXAxisMax'][0].data)
-            yMin = float(request.inputs['interpolateYAxisMin'][0].data)
-            yMax = float(request.inputs['interpolateYAxisMax'][0].data)
+            xmin = float(request.inputs['interpolateXAxisMin'][0].data)
+            xmax = float(request.inputs['interpolateXAxisMax'][0].data)
+            ymin = float(request.inputs['interpolateYAxisMin'][0].data)
+            ymax = float(request.inputs['interpolateYAxisMax'][0].data)
             if xmax < xmin:
                 xmin, xmax = xmax, xmin
             dx = (xmax-xmin)/float(request.inputs['interpolateHorSteps'][0].data)
             dy = (ymax-ymin)/float(request.inputs['interpolateHorSteps'][0].data)
             command += ' --interpolate.xAxisValues=%s,%s,...,%s' % (xmin, xmin+dx, xmax)
+            command += ' --interpolate.yAxisValues=%s,%s,...,%s' % (ymin, ymin+dy, ymax)
         command += ' ' + '='.join([fimex_arguments[i] + '=' + request.inputs[i][0].data for i in request.inputs if i in list(fimex_arguments.keys())])
         #command += ' --extract.selectVariables='+' --extract.selectVariables='.join(request.inputs['selectVariables'][0].data)
         #command += ' --interpolate.xAxisValues=%s,%s,...,%s' % (xmin, xmin+dx, xmax)
