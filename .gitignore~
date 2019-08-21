@@ -2,7 +2,7 @@
 workdir/*
 outputs/*
 logs/*
-.*.py~
+
 # vim, mac os
 *.sw*
 .DS_Store
