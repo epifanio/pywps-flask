@@ -40,7 +40,7 @@ from processes.sayhello import SayHello
 from processes.feature_count import FeatureCount
 from processes.buffer import Buffer
 from processes.area import Area
-
+from processes.transformation import Transformation
 
 processes = [
     FeatureCount(),
